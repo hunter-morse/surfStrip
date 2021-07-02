@@ -1,3 +1,6 @@
-*.h
-**/.h
+#*.h
+**/wifi_creds.h
+**/firebase_creds.h
+**.json
+**/.json
 .vscode/
