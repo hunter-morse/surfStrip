@@ -75,7 +75,7 @@ void setup() {
   // Check stream connection
   printFbStreamStatus(firebaseData, root);
   Serial.println("xxxxx");
-  Serial.println("Connected to database");
+  
 
   // Setup FastLED
   FastLED.addLeds<WS2812B, LED_PIN, GRB>(leds, numLEDs);
@@ -117,6 +117,7 @@ void loop() {
   
 
   int statusCode = client.responseStatusCode();
+  Serial.println("Status Code: " + (String)statusCode);
   String cResponse = client.responseBody();
 
   // Parse JSON from server
@@ -133,6 +134,7 @@ void loop() {
 
   // Collect Json Data
   const float maxSurf = doc["data"]["wave"][0]["surf"]["max"];
+  Serial.println(maxSurf);
 
   // Light LEDs
   int toBeLitLEDs = round(maxSurf * LED_PER_FT);
@@ -174,6 +176,7 @@ int printFbStreamStatus(FirebaseData fbData, String path){
     Serial.println();
     return 1;
   } else {
+    Serial.println("Connected to database");
     return 0;
   }
 }
