@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>FB Web Testing</title>
+	<script type="text/javascript"></script>
+</head>
+<body>
+	FirstName <input id="fnamebox" type="text" ></input> <br><br>
+	LastName <input id="lnamebox" type="text" ></input> <br><br>
+
+	<button id="insert">INSERT</button>
+
+	
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-database.js"></script>
+
+	<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-analytics.js"></script>
+
+	<script id="MainScript">
+		// Your web app's Firebase configuration
+	  	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+	  	var firebaseConfig = {
+		    apiKey: "AIzaSyAwPr3k6KQe4aFdrfPvyLQywmySDG80ua4",
+			authDomain: "surfstrip-b24a3.firebaseapp.com",
+			databaseURL: "https://surfstrip-b24a3-default-rtdb.firebaseio.com",
+			projectId: "surfstrip-b24a3",
+			storageBucket: "surfstrip-b24a3.appspot.com",
+			messagingSenderId: "91222368512",
+			appId: "1:91222368512:web:3a3662912b2c2354e413e5",
+			measurementId: "G-4JR3BSRZF0"
+		};
+
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+		firebase.analytics();
+
+		//---- Ready Data ----//
+  		var fnameV, lnameV;
+
+  		function Ready(){
+  			fnameV = document.getElementById('fnamebox').value;
+  			lnameV = document.getElementById('lnamebox').value;
+  		}
+
+  		//---- Process ----//
+  		document.getElementById('insert').onclick = function(){
+  			Ready();
+  			firebase.database().ref('student/'+fnameV).set({
+  				FirstName: fnameV,
+  				LastName: lnameV
+  			});
+  		}
+	</script>
+
+
+</body>
+</html>
