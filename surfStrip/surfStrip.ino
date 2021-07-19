@@ -275,7 +275,9 @@ void loop() {
 
 
   if (updatePath(root, location) or (unsigned long)(currMillis - startMillis) >= HOUR_IN_MILLIS){
-    updateLocationID(location);
+    if (location != "off"){
+      updateLocationID(location); 
+    }
     updateRGBValues(location);
 
 

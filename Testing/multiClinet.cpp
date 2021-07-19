@@ -13,8 +13,8 @@ char server[] = "services.surfline.com";
 int port = 80;
 
 String root = "/path";
-String location = "";
-String locationID = "";
+String location = "";   // Location as listed in FBRTDB
+String locationID = ""; // "SpotID" used for URL
 String leader = "/kbyg/spots/forecasts/wave?";
 String numDays = "&days=1";
 String numHours = "&intervalHours=24";
@@ -275,7 +275,9 @@ void loop() {
 
 
   if (updatePath(root, location) or (unsigned long)(currMillis - startMillis) >= HOUR_IN_MILLIS){
-    updateLocationID(location);
+    if(location != "off"){
+      updateLocationID(location);      
+    } 
     updateRGBValues(location);
 
 
